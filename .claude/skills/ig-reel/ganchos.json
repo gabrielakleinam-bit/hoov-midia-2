@@ -1,0 +1,325 @@
+{
+  "version": "1.0-ptbr",
+  "note": "28 fórmulas de gancho (26 do original adaptadas mais 2 da Hoov) para Reels, em português e com exemplos de carro. Adaptado de instagram-agent-skill (MIT, Jake Schincariol). Um Reel tem dois ganchos que disparam juntos e não são a mesma frase: o que você fala e o que aparece na tela. O falado tem uns dois segundos; o da tela tem um, porque é lido antes de ser ouvido. Cada fórmula tem modelo, exemplo, versão de tela, para que serve, como costuma ser estragada e um regex `match` para reconhecer o formato num gancho real. Os exemplos são ilustrativos: num roteiro da Hoov, todo número vem de alerta ou anúncio real, nunca do exemplo.",
+  "rules": [
+    "Escreva a frase falada e a frase da tela separadas. Na tela vai a mais curta e seca, seis palavras ou menos.",
+    "Sem preparação. O vídeo começa na frase que você normalmente diria no sexto segundo.",
+    "Fale o número. 'Bem barato' não é número; '14% abaixo da FIPE' é.",
+    "O primeiro quadro também é gancho. Rosto parado sem texto no 0:00 desperdiça três ganchos.",
+    "Se o gancho serve para qualquer outra página de carro, não é seu. Coloque o que só a Hoov pode dizer: o dado do monitoramento.",
+    "Gancho promete. Entregue antes da metade do vídeo ou a retenção que você comprou vai embora.",
+    "Carro muito abaixo da FIPE (30% ou mais) no gancho pede o aviso 'confira' no vídeo: golpe e sinistro também parecem ótimo negócio."
+  ],
+  "hooks": [
+    {
+      "id": 1,
+      "name": "Confissão de Custo",
+      "template": "{Valor exato} foi o que {um erro} me custou.",
+      "example": "R$ 7 mil foi o que não puxar o histórico do carro me custou.",
+      "on_screen": "R$ 7 MIL DE ERRO",
+      "best_for": "Confiança rápido. As pessoas terminam o vídeo em que você é quem se deu mal.",
+      "trap": "Custo inventado ou vago. 'Me custou caro' não é número e todo mundo percebe.",
+      "match": "(?i)R\\$\\s?\\d[\\d.,]*(?:\\s?mil)?\\s+(?:foi|é) o que\\b|\\b(?:me|nos) custou\\b|\\bperdi\\b[^.!?]{0,25}R\\$\\s?\\d"
+    },
+    {
+      "id": 2,
+      "name": "Comando Negativo",
+      "template": "Pare de {hábito comum}. Faça {alternativa}.",
+      "example": "Pare de olhar só o preço do anúncio. Olhe quanto tempo ele está no ar.",
+      "on_screen": "PARE DE OLHAR SÓ O PREÇO",
+      "best_for": "Salvamentos e discussão. O imperativo pega uma atenção que a afirmação não pega.",
+      "trap": "Mandar parar algo que ninguém faz. O hábito tem que ser um que quem assiste reconhece em si.",
+      "match": "(?i)^\\s*(?:pare|nunca|n[ãa]o)\\s+(?:de\\s+)?(?:compre|comprar|feche|fechar|pague|pagar|olhe|olhar|confie|confiar|v[áa]|ir|aceite|aceitar|financie|financiar)\\b|^\\s*pare de\\b"
+    },
+    {
+      "id": 3,
+      "name": "Ninguém Te Conta",
+      "template": "Ninguém te conta que {verdade desconfortável sobre o que a pessoa quer}.",
+      "example": "Ninguém te conta que o carro mais barato do anúncio quase nunca é o melhor negócio.",
+      "on_screen": "NINGUÉM TE CONTA ISSO",
+      "best_for": "Público novo. Coloca você como quem fala a parte que ninguém fala.",
+      "trap": "Escolher uma verdade que todo mundo já diz. Se os comentários concordam antes do fim, não era segredo.",
+      "match": "(?i)\\b(?:ningu[ée]m|nenhum vendedor|nenhuma loja)\\s+(?:te\\s+|nunca\\s+te\\s+)?(?:conta|contou|fala|falou|diz|disse|avisa|avisou|mostra)\\b|\\bo que (?:ningu[ée]m|a loja|o vendedor) n[ãa]o (?:conta|fala|diz)\\b"
+    },
+    {
+      "id": 4,
+      "name": "A Troca",
+      "template": "{Isso} substituiu {coisa cara} por {preço}.",
+      "example": "Um alerta de R$ 149 por mês substituiu o fim de semana inteiro abrindo aba de portal.",
+      "on_screen": "10 ABAS -> 1 ALERTA",
+      "best_for": "Demonstração de ferramenta. A diferença de preço ou de esforço faz o trabalho.",
+      "trap": "Exagerar a troca. Se substituiu 60% do trabalho, diga 60%, ou os comentários dizem por você.",
+      "match": "(?i)\\bsubstitu(?:i|iu|ir|í)\\w*\\b|\\bem vez de (?:pagar|contratar|abrir|perder)\\b|\\bno lugar de\\b"
+    },
+    {
+      "id": 5,
+      "name": "Colapso de Tempo",
+      "template": "Isso me tomava {muito tempo}. Agora leva {pouco tempo}.",
+      "example": "Achar um Onix bom levava meu sábado inteiro. Agora leva quatro minutos.",
+      "on_screen": "SÁBADO INTEIRO -> 4 MIN",
+      "best_for": "Processo em que o ganho é velocidade. Lê instantaneamente na tela.",
+      "trap": "Razão que ninguém acredita. 40 horas para 4 segundos parece mentira mesmo sendo verdade.",
+      "match": "(?i)\\b(?:levava|demorava|tomava|gastava)\\b|\\bagora (?:s[óo] )?(?:leva|demora)\\b|\\bem \\d+\\s*(?:seg|segundos?|min|minutos?|horas?)\\b"
+    },
+    {
+      "id": 6,
+      "name": "O Recibo",
+      "template": "Fiz {coisa} por {N dias}. Aqui estão os números de verdade.",
+      "example": "Monitorei todo HB20 de Curitiba por 30 dias. Aqui está quanto tempo cada um durou.",
+      "on_screen": "30 DIAS. NÚMEROS REAIS.",
+      "best_for": "Experimentos. Combina com gravação da tela do painel real, que é o valor inteiro.",
+      "trap": "Não mostrar a tela. Vídeo de número sem gravação de tela é só uma alegação.",
+      "match": "(?i)\\b(?:monitorei|acompanhei|testei|fiz|postei|vendi|comprei|anotei)\\b[^.!?]{0,40}\\bpor\\s+\\d+\\s+(?:dias?|semanas?|meses|anos?)\\b|\\b(?:aqui est[ãa]o|esses s[ãa]o) (?:os|meus) n[úu]meros\\b"
+    },
+    {
+      "id": 7,
+      "name": "Jeito Errado, Jeito Certo",
+      "template": "Você está fazendo {coisa} errado, e não é culpa sua. {A correção}.",
+      "example": "Você está comparando preço errado, e não é culpa sua. O portal não te mostra a FIPE do lado.",
+      "on_screen": "VOCÊ COMPARA ERRADO",
+      "best_for": "Ensinar. A metade 'não é culpa sua' impede que soe como ofensa, que é o que mata este.",
+      "trap": "Pular a absolvição. 'Você está fazendo errado' sozinho faz a pessoa sair em vez de aprender.",
+      "match": "(?i)\\b(?:o maior|um|o) erro\\b|\\berro (?:que|de quem|na hora)\\b|\\bvoc[êe] (?:est[áa]|t[áa]) (?:fazendo|comparando|comprando|negociando)\\b[^.!?]*\\berrado\\b|\\bn[ãa]o [ée] culpa sua\\b"
+    },
+    {
+      "id": 8,
+      "name": "Vazamento de Dentro",
+      "template": "Passei {N anos} {dentro do negócio}. O que a gente nunca fala em voz alta.",
+      "example": "Revendo carro há seis anos. Isso aqui a gente nunca fala para o cliente.",
+      "on_screen": "6 ANOS NA REVENDA",
+      "best_for": "Autoridade sem slide de currículo. Só funciona se os anos forem reais.",
+      "trap": "Prometer segredo e entregar o folheto. Os comentários não perdoam.",
+      "match": "(?i)\\b(?:passei|trabalhei|trabalho|revendo|vendo carro|fui)\\b[^.!?]*\\b\\d+\\s*\\+?\\s*anos?\\b|\\ba gente nunca (?:fala|conta|mostra)\\b|\\bh[áa] \\d+ anos\\b"
+    },
+    {
+      "id": 9,
+      "name": "O Roubo",
+      "template": "Rouba esse {artefato}. Levei {tempo} para acertar.",
+      "example": "Rouba essa checagem de cinco itens antes de ir ver um usado. Levei três carros ruins para chegar nela.",
+      "on_screen": "ROUBA ESSA LISTA",
+      "best_for": "Salvamentos e envios, as duas métricas que mais movem alcance.",
+      "trap": "O artefato não aparecer na tela. Se não dá para printar, não tem o que roubar.",
+      "match": "(?i)^\\s*(?:rouba|roube|copia|copie|salva|salve)\\b|\\b(?:rouba|copia) (?:essa|esse|isso|minha|meu)\\b|^\\s*(?:essa|esse) [ée] (?:a|o) (?:exat[ao]|mesm[ao])\\b"
+    },
+    {
+      "id": 10,
+      "name": "Se Isso, Então Assiste",
+      "template": "Se você {situação específica}, esses {pouco tempo} resolvem.",
+      "example": "Se você perde todo carro bom para quem responde primeiro, os próximos 30 segundos resolvem.",
+      "on_screen": "SEMPRE CHEGA ATRASADO?",
+      "best_for": "Qualificar forte. Fica menos gente, e quem fica é quem compra.",
+      "trap": "Situação tão ampla que não qualifica ninguém. 'Se você quer um carro' não é situação.",
+      "match": "(?i)^\\s*se (?:voc[êe]|vc|voc[êe]s|o seu|a sua|seu|sua)\\b"
+    },
+    {
+      "id": 11,
+      "name": "Lista Com Favorito",
+      "template": "{N} {coisas} que {resultado}. A número {k} é a que ninguém faz.",
+      "example": "Quatro sinais de que o usado vai encalhar. O terceiro ninguém olha.",
+      "on_screen": "4 SINAIS. O 3º NINGUÉM VÊ.",
+      "best_for": "Retenção no meio: ter um favorito dá motivo para ficar além do terceiro item.",
+      "trap": "N acima de sete. Ninguém acredita que você tem nove bons, e você não tem.",
+      "match": "(?i)^\\s*(?:\\d+|dois|duas|tr[êe]s|quatro|cinco|seis|sete)\\s+(?:sinais|erros|coisas|dicas|carros|modelos|motivos|perguntas|itens)\\b|\\b(?:a|o) (?:n[úu]mero|terceir[oa]|quart[oa]|quint[oa])\\b"
+    },
+    {
+      "id": 12,
+      "name": "A Objeção",
+      "template": "\"{Objeção que a pessoa realmente diz}.\" Tá. Aqui vai a versão que funciona mesmo assim.",
+      "example": "\"Carro abaixo da FIPE é sempre bomba.\" Nem sempre. Aqui está como separar.",
+      "on_screen": "\"ABAIXO DA FIPE É BOMBA\"",
+      "best_for": "Vender para quem já disse não uma vez.",
+      "trap": "Inventar a objeção. Copie palavra por palavra de um direct ou comentário, com o erro de português junto.",
+      "match": "^\\s*[\\\"“'][^\\\"”']{5,120}[\\\"”'][,.]?\\s*(?i:t[áa]|ok|beleza|nem sempre|ser[áa]|certo|ent[ãa]o)"
+    },
+    {
+      "id": 13,
+      "name": "Antes e Depois na Tela",
+      "template": "{Mostra o antigo}. {Mostra o novo}. {Uma frase sobre a alavanca}.",
+      "example": "Esse era o anúncio a R$ 62 mil. Esse é ele hoje, a R$ 54 mil. Mudou uma coisa: 40 dias parado.",
+      "on_screen": "R$ 62 MIL / R$ 54 MIL",
+      "best_for": "Qualquer coisa visual. O corte entre os dois quadros é o gancho; as palavras são secundárias.",
+      "trap": "Três alavancas. Diga uma coisa que mudou ou a transformação deixa de ser crível.",
+      "match": "(?i)\\b(?:esse|essa|isso) era\\b[^.!?]*[.!?]\\s*(?:esse|essa|isso) [ée]\\b|\\bantes\\b[^.!?]*\\bdepois\\b|\\bbaixou \\d+\\s*vez"
+    },
+    {
+      "id": 14,
+      "name": "O Chamado",
+      "template": "{Grupo específico}, esse é o que você está ignorando.",
+      "example": "Quem revende carro como renda extra: esse é o filtro que você não está usando.",
+      "on_screen": "REVENDE COMO RENDA EXTRA?",
+      "best_for": "Cortar público amplo até o que converte. Envio sobe porque as pessoas se marcam.",
+      "trap": "Grupo tão grande que não é chamado. 'Quem quer carro' não é grupo.",
+      "match": "(?i)^\\s*(?:todo|toda|quem)\\s+\\w+|^\\s*[a-zà-ú][\\w ]{2,28}(?:istas|dores|deiros|eiros)\\b\\s*[,:]|^\\s*aten[çc][ãa]o\\b"
+    },
+    {
+      "id": 15,
+      "name": "O Histórico de Fracasso",
+      "template": "Meus primeiros {N} {tentativas} não deram em nada. Aqui está o que mudou no {N+1}.",
+      "example": "Os primeiros 5 carros que eu tentei comprar, alguém fechou antes. O sexto eu fechei em 20 minutos.",
+      "on_screen": "5 PERDIDOS, ENTÃO ISSO",
+      "best_for": "Quem está começando, que é a maior parte do público. Muito comentário.",
+      "trap": "Fazer a mudança parecer sorte. Se a resposta é 'dei sorte', não tem vídeo.",
+      "match": "(?i)\\b(?:meus|minhas|os|as) primeir[oa]s\\s+\\d+\\b|\\bprimeir[oa]s\\s+\\d+\\s+(?:carros?|v[íi]deos?|posts?|clientes?|meses|vendas?)\\b"
+    },
+    {
+      "id": 16,
+      "name": "A Pergunta Literal",
+      "template": "\"{Pergunta exatamente como foi feita}\" - recebo essa toda semana.",
+      "example": "\"Vale a pena comprar carro de leilão?\" Recebo essa toda semana.",
+      "on_screen": "PERGUNTAM TODA SEMANA",
+      "best_for": "Busca. A pergunta digitada do jeito que as pessoas digitam é o que a busca do Instagram encontra.",
+      "trap": "Arrumar a pergunta. O valor é estar nas palavras delas, com erro e tudo.",
+      "match": "(?i)^\\s*[\\\"“']?(?:como|qual|quais|quanto|quanta|por que|porque|pq|quando|onde|quem|vale a pena|d[áa] pra|posso|devo|[ée] melhor|compensa)\\b[^?]{3,110}\\?"
+    },
+    {
+      "id": 17,
+      "name": "Mano a Mano",
+      "template": "{A} contra {B}. Acompanhei os dois por {tempo} e não foi nem perto.",
+      "example": "Onix contra HB20. Acompanhei os dois por 60 dias no usado e um saiu do ar duas vezes mais rápido.",
+      "on_screen": "ONIX vs HB20",
+      "best_for": "Comentários. As pessoas chegam com opinião pronta, que é o ponto.",
+      "trap": "Não escolher um lado. Comparação com final diplomático é vídeo sem final.",
+      "match": "(?i)\\b(?:vs\\.?|versus)\\b|^\\s*[\\w-]+\\s+(?:contra|ou)\\s+[\\w-]+\\s*[.?]|\\bdiferen[çc]a entre\\b"
+    },
+    {
+      "id": 18,
+      "name": "Demo Fria",
+      "template": "{Começa no meio da ação, já fazendo.} Olha o que isso faz.",
+      "example": "Olha o que acontece quando eu coloco esse anúncio do lado da FIPE.",
+      "on_screen": "OLHA ISSO",
+      "best_for": "Gravação de tela e qualquer coisa com resultado visível. Zero preparação, a mão já está mexendo.",
+      "trap": "Resultado que leva doze segundos para aparecer. Se a recompensa é lenta, corte para ela e mostre a espera depois.",
+      "match": "(?i)^\\s*(?:olha|olhe|veja|v[êe]) (?:o que|isso|s[óo])\\b|^\\s*deixa eu te mostrar\\b|^\\s*repete comigo\\b"
+    },
+    {
+      "id": 19,
+      "name": "O Prazo",
+      "template": "{Coisa} muda em {data}. Faça {ação} antes.",
+      "example": "O IPVA de 2027 sai em janeiro. Se vai trocar de carro, faça a conta antes.",
+      "on_screen": "ANTES DO IPVA DE 2027",
+      "best_for": "Urgência real. Imposto, juros, mudança de tabela, sazonalidade.",
+      "trap": "Urgência fabricada. Um prazo falso e todos os próximos perdem valor.",
+      "match": "(?i)\\bantes (?:de|do|da|que)\\b[^.!?]*\\b(?:mudar|muda|acabar|acaba|subir|sobe|vencer|vence|fechar|fecha|sair|sai)\\b|\\bmuda (?:em|no dia|a partir)\\b|\\bat[ée] (?:dia )?\\d|\\b(?:sai|muda|sobe|vence|come[çc]a|acaba)\\s+(?:em|no come[çc]o de|no fim de)\\s+(?:janeiro|fevereiro|mar[çc]o|abril|maio|junho|julho|agosto|setembro|outubro|novembro|dezembro|\\d)"
+    },
+    {
+      "id": 20,
+      "name": "Permissão",
+      "template": "Você não precisa de {o que todo mundo diz que precisa}.",
+      "example": "Você não precisa de carro zero para fugir de dor de cabeça. Precisa de histórico.",
+      "on_screen": "NÃO PRECISA SER ZERO",
+      "best_for": "Alívio. Taxa de salvamento muito alta, porque tira um bloqueio em vez de dar tarefa.",
+      "trap": "Tirar o bloqueio e não colocar nada no lugar. A segunda metade é o vídeo inteiro.",
+      "match": "(?i)\\bvoc[êe] n[ãa]o precisa\\b|\\bpare de (?:tentar|se preocupar)\\b|\\bn[ãa]o precisa (?:ser|ter|pagar)\\b"
+    },
+    {
+      "id": 21,
+      "name": "Começo no Meio da Frase",
+      "template": "{...e foi aí que {a virada}.}",
+      "example": "...e foi aí que o vendedor pediu o Pix antes de eu ver o carro.",
+      "on_screen": "PEDIU PIX ANTES",
+      "best_for": "Histórias. Começar no meio da cena faz a pessoa sentir que chegou atrasada, que é motivo para ficar.",
+      "trap": "Nunca voltar para preencher o buraco. Entregue o contexto até o segundo oito ou parece erro de edição.",
+      "match": "(?i)^\\s*(?:\\.\\.\\.|…)|^\\s*(?:e (?:foi )?a[íi] que|e ent[ãa]o|a[íi] (?:ele|ela|o cara) (?:falou|disse|pediu))\\b"
+    },
+    {
+      "id": 22,
+      "name": "Inversão do Ditado",
+      "template": "{Ditado conhecido, invertido.}",
+      "example": "Quem vende barato vende rápido. Mentira.",
+      "on_screen": "BARATO NÃO VENDE RÁPIDO",
+      "best_for": "Comentários. A pessoa precisa parar para checar se ouviu direito.",
+      "trap": "Inverter ditado que ninguém diz. O original tem que ser reflexo, senão a inversão é só uma frase.",
+      "match": "(?i)^\\s*[a-zà-ú][\\w' ]{2,34}\\b(?:[ée]|s[ãa]o|vende|vendem|ganha|ganham|perde|perdem)\\s+(?:mentira|mito|furada|errado|superestimad[oa]|subestimad[oa])\\b|\\b(?:[ée] )?mito\\.|\\.\\s*(?:mentira|mito|n[ãa]o [ée] bem assim|errado)\\s*[.!]?\\s*$"
+    },
+    {
+      "id": 23,
+      "name": "A Estatística",
+      "template": "{N}% de {grupo} {fato surpreendente}.",
+      "example": "{{N}}% dos HB20 anunciados em Curitiba saem do ar em menos de uma semana.",
+      "on_screen": "{{N}}% SOMEM EM 1 SEMANA",
+      "best_for": "Envios. Número que dá para repetir no almoço é número que alguém manda para outro.",
+      "trap": "Estatística sem fonte. Diga de onde veio no vídeo ou não use. Na Hoov, só número da própria base.",
+      "match": "^\\s*\\d[\\d,.]*\\s?%|\\b\\d[\\d,.]*\\s?%\\s+(?:d[oa]s?|de)\\b"
+    },
+    {
+      "id": 24,
+      "name": "A Revelação",
+      "template": "Esse é o novo {coisa}.",
+      "example": "Esse é o Kait novo, e ele derrubou o preço de um usado que você não espera.",
+      "on_screen": "O NOVO KAIT",
+      "best_for": "Qualquer coisa física ou visual. O objeto é o gancho; as palavras são legenda dele.",
+      "trap": "Mostrar a coisa sem dizer o que ela muda. Revelação sem tensão é anúncio.",
+      "match": "(?i)^\\s*(?:ent[ãa]o,?\\s+)?(?:esse|essa|este|esta|aqui) (?:[ée] |est[áa] )?(?:o|a)\\s+(?:nov[oa]\\b|[\\w-]+\\s+nov[oa]\\b)|^\\s*(?:esse|essa) \\w+ (?:tem|chegou|saiu)\\b"
+    },
+    {
+      "id": 25,
+      "name": "O Resultado de Outro",
+      "template": "Teve um {pessoa} que {resultado} em {tempo}.",
+      "example": "Um cliente nosso no Rio fechou uma HR-V por ser o primeiro a responder o anúncio.",
+      "on_screen": "O PRIMEIRO A RESPONDER",
+      "best_for": "Prova quando você ainda não tem o próprio número. Terceira pessoa vale se for verdade e com permissão.",
+      "trap": "Sem nome e sem prova. Milagre anônimo é boato.",
+      "match": "(?i)\\b(?:teve|tem|conheci) (?:um|uma|esse|essa)\\b|\\b(?:um|uma) (?:cara|cliente|revendedor|lojista|amig[oa]|leitor|seguidor[a]?) (?:que |nosso |nossa |meu |minha )?[^.!?]{0,25}?\\b(?:\\w+ou|fechou|comprou|vendeu|achou|pegou|perdeu)\\b"
+    },
+    {
+      "id": 26,
+      "name": "O Superlativo",
+      "template": "O {mais rápido / maior / único} {coisa} é {a resposta}.",
+      "example": "O jeito mais rápido de saber se o preço é bom é olhar quanto tempo o anúncio está no ar.",
+      "on_screen": "O JEITO MAIS RÁPIDO",
+      "best_for": "Vídeo de uma afirmação só, sem história. É o formato mais comum e o mais fácil de escrever mal.",
+      "trap": "Superlativo com resposta mole. Se a segunda metade é 'pesquisar bastante', você não disse nada.",
+      "match": "(?i)^\\s*(?:o|a)\\s+(?:jeito|forma|carro|modelo|usado|sedan|suv|hatch|erro|golpe)?\\s*(?:mais (?:r[áa]pid[oa]|barat[oa]|f[áa]cil|dif[íi]cil|comum|vendid[oa]|important[e])|maior|pior|melhor|[úu]nic[oa])\\b"
+    },
+    {
+      "id": 27,
+      "name": "O Garimpo",
+      "template": "Achei {modelo ano} {N}% abaixo da FIPE {onde ou em quanto tempo}.",
+      "example": "Achei esse HB20 2020 14% abaixo da FIPE, em Curitiba, em 4 minutos.",
+      "on_screen": "HB20 2020 · -14% FIPE",
+      "best_for": "O formato-assinatura do 'garimpo do dia'. Vem direto de um alerta real da Hoov, com o sinaleiro na tela.",
+      "trap": "Desvio sem o mês da FIPE, ou desvio grande demais sem o aviso 'confira'. Carro 30% ou mais abaixo pode ser golpe ou sinistro.",
+      "match": "(?i)\\d[\\d,.]*\\s?%\\s*abaixo\\s*d[ae]\\s*(?:tabela\\s*)?fipe|\\bR\\$\\s?\\d[\\d.,]*(?:\\s?mil)?\\s+abaixo\\s+d[ae]\\s+(?:tabela\\s+)?fipe"
+    },
+    {
+      "id": 28,
+      "name": "O Cronômetro",
+      "template": "Esse {modelo} durou {tempo} no ar.",
+      "example": "Esse Corolla 2019 durou 3 horas no ar.",
+      "on_screen": "DUROU 3 HORAS",
+      "best_for": "Prova de liquidez e de urgência ao mesmo tempo. É o dado que só quem monitora o anúncio do nascimento à saída tem.",
+      "trap": "Tempo sem fonte. Só use se o monitoramento registrou a entrada e a saída do anúncio.",
+      "match": "(?i)\\b(?:durou|ficou|sumiu em|saiu (?:do ar )?em|vendeu em)\\s+(?:s[óo]\\s+)?\\d+\\s*(?:min|minutos?|horas?|h|dias?)\\b|\\b\\d+\\s*(?:min|minutos?|horas?|dias?)\\s+no ar\\b"
+    }
+  ],
+  "classify_order": [
+    27,
+    28,
+    1,
+    23,
+    15,
+    5,
+    4,
+    3,
+    20,
+    7,
+    9,
+    26,
+    25,
+    24,
+    18,
+    17,
+    8,
+    6,
+    16,
+    12,
+    10,
+    2,
+    13,
+    19,
+    21,
+    22,
+    11,
+    14
+  ]
+}

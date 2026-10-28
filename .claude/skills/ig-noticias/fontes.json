@@ -1,0 +1,24 @@
+{
+  "nota": "Feeds RSS de notícias automotivas brasileiras verificados em 26/out/2026. Para adicionar um site, inclua um item com nome, url do feed e peso (1 a 3: quanto o site costuma tratar de mercado, preço e regra, e não só de lançamento). Sites sem feed, ou que recusarem acesso, entram pela busca: veja a lista 'buscas'.",
+  "feeds": [
+    {"nome": "Webmotors WM1", "url": "https://www.webmotors.com.br/wm1/feed/", "peso": 2},
+    {"nome": "AutoIndústria", "url": "https://www.autoindustria.com.br/feed/", "peso": 3},
+    {"nome": "Notícias Automotivas", "url": "https://www.noticiasautomotivas.com.br/feed/", "peso": 2},
+    {"nome": "Garagem 360", "url": "https://garagem360.com.br/feed/", "peso": 1}
+  ],
+  "buscas": [
+    "Selic financiamento de veículos",
+    "taxa de juros financiamento carro",
+    "Fenabrave emplacamentos",
+    "Fenauto venda de usados",
+    "tabela FIPE usados variação",
+    "IPI carros",
+    "IPVA 2027",
+    "reforma tributária imposto seletivo veículos",
+    "imposto de importação carros elétricos",
+    "montadora chinesa fábrica Brasil",
+    "carro fica mais barato desconto",
+    "recall convocação carros",
+    "preço da gasolina etanol"
+  ]
+}
