@@ -1,0 +1,6 @@
+{"cenas":[
+ {"tipo":"card","duracao":3.0,"estados":[
+   {"t":0,"titulo":"Pare de\nprocurar **Kicks**\nusado todo"},
+   {"t":1.0,"titulo":"Pare de\nprocurar **Kicks**\nusado todo dia.","sub":"Deixa que a hoov procura pra\nvocê."}]},
+ {"tipo":"final","duracao":3.0,"titulo":"Crie seu alerta\ngrátis","cta":"Link na bio","loop":"Creta bom tem um dono só.","handle":"Siga a @hoovbr pro garimpo do dia"}
+]}
