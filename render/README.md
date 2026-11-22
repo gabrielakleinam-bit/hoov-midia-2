@@ -15,3 +15,19 @@ Sintaxe do JSON: `**trecho**` vira destaque em #FF3214. Tipos: `capa` (titulo, s
 `passo` (n, titulo, corpo), `lista` (titulo, itens[]), `cta` (titulo, corpo).
 
 Pendente (Fase 2): render do Reel a partir de JSON (cenas, narração ElevenLabs, trilha) com o mesmo teste de equivalência.
+
+## Reel (foco do feed e dos stories)
+
+Fluxo de um Reel, em comandos (a inteligência do Claude fica só no JSON):
+
+```bash
+mkdir work && cd work
+python3 ../render/gravacao_tela.py "Creta" "Hyundai Creta" 2022      # grava hoov.com.br (fotos borradas)
+python3 ../render/frames_para_clip.py fr meta.json rec.mp4
+# Claude escreve spec.json (ver render/specs/exemplo-reel-creta.json); narração opcional: "narracao": "voz.mp3"
+python3 ../render/render_reel.py spec.json reel.mp4                    # cenas, trilha por código, mixagem -14 LUFS
+```
+
+Testado: cenas de texto e final com SSIM 0,95 a 0,96 contra Reels publicados; áudio -14 LUFS;
+exportação 1080x1920, 30 fps, H.264, AAC 48 kHz. Trilha por código (`musica_gerador.py`) custa zero crédito.
+Obs.: o ducking exige a voz preenchida até o fim do vídeo (`apad`), já tratado no script.

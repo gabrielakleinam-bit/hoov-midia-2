@@ -65,8 +65,8 @@ def overlay(sc):
     pop = ""
     if sc.get("pop"):
         pop = (f'<div style="position:absolute;left:90px;right:90px;top:{sc.get("pop_top",1180)}px;background:rgba(22,22,22,.92);border-left:8px solid {ACC};border-radius:14px;padding:26px 34px;font-weight:800;font-size:54px;line-height:1.15">{hl(sc["pop"])}</div>')
-    selo = f'<div style="position:absolute;right:70px;top:90px;background:{ACC};border-radius:40px;padding:10px 28px;font-weight:800;font-size:38px">{html.escape(sc["selo"])}</div>' if sc.get("selo") else ""
-    cred = f'<div style="position:absolute;left:60px;right:60px;top:1620px;font-weight:500;font-size:28px;color:{MUT};text-align:center;text-shadow:0 2px 6px #000">{html.escape(sc.get("credito",""))}</div>' if sc.get("credito") else ""
+    selo = f'<div style="position:absolute;right:70px;top:1470px;background:{ACC};border-radius:40px;padding:10px 28px;font-weight:800;font-size:38px">{html.escape(sc["selo"])}</div>' if sc.get("selo") else ""
+    cred = f'<div style="position:absolute;left:0;right:0;top:1600px;font-weight:500;font-size:25px;color:{MUT};text-align:center;white-space:nowrap;background:rgba(22,22,22,.82);padding:8px 0">{html.escape(sc.get("credito",""))}</div>' if sc.get("credito") else ""
     return f'<div class="s" style="background:transparent">{pop}{selo}{cred}</div>'
 
 def run(cmd): subprocess.run(cmd, check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE)

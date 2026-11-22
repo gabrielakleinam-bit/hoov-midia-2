@@ -1,0 +1,80 @@
+{
+ "musica": {
+  "seed": 2311,
+  "bpm": 100,
+  "tom": "D"
+ },
+ "cenas": [
+  {
+   "tipo": "card",
+   "duracao": 2.6,
+   "estados": [
+    {
+     "t": 0,
+     "titulo": "Pare de abrir\nvários portais\npra achar **Creta**\nusado."
+    }
+   ]
+  },
+  {
+   "tipo": "tela",
+   "duracao": 1.8,
+   "clip": "rec.mp4",
+   "ss": 2.59,
+   "velocidade": 1.2,
+   "selo": "1,2x",
+   "credito": "Gravação real de hoov.com.br em 22/11/2026 · trechos acelerados · fotos borradas"
+  },
+  {
+   "tipo": "tela",
+   "duracao": 3.5,
+   "clip": "rec.mp4",
+   "ss": 35.76,
+   "velocidade": 1.4,
+   "selo": "1,4x",
+   "pop": "Uma busca.\n**Vários portais.**",
+   "pop_t": 0.3,
+   "credito": "Gravação real de hoov.com.br em 22/11/2026 · trechos acelerados · fotos borradas"
+  },
+  {
+   "tipo": "tela",
+   "duracao": 4.4,
+   "clip": "rec.mp4",
+   "ss": 45.52,
+   "velocidade": 1.5,
+   "selo": "1,5x",
+   "pop": "Filtra por\n**ano e câmbio**",
+   "pop_t": 0.5,
+   "credito": "Gravação real de hoov.com.br em 22/11/2026 · trechos acelerados · fotos borradas",
+   "pop_top": 1330
+  },
+  {
+   "tipo": "tela",
+   "duracao": 3.4,
+   "clip": "rec.mp4",
+   "ss": 94.53,
+   "velocidade": 1.5,
+   "selo": "1,5x",
+   "pop": "Estimamos até\n**2.183** resultados",
+   "pop_t": 0.4,
+   "credito": "Gravação real de hoov.com.br em 22/11/2026 · trechos acelerados · fotos borradas"
+  },
+  {
+   "tipo": "tela",
+   "duracao": 2.7,
+   "clip": "rec.mp4",
+   "ss": 99.94,
+   "velocidade": 1.0,
+   "pop": "Salve a busca.\n**Receba alerta.**",
+   "pop_t": 0.2,
+   "credito": "Gravação real de hoov.com.br em 22/11/2026 · fotos borradas"
+  },
+  {
+   "tipo": "final",
+   "duracao": 4.0,
+   "titulo": "Crie seu alerta\ngrátis",
+   "cta": "Link na bio",
+   "loop": "Creta usado, sem aba a mais.",
+   "handle": "Siga a @hoovbr pro garimpo do dia"
+  }
+ ]
+}
