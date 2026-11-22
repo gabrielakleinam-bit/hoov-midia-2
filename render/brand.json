@@ -1,0 +1,13 @@
+{
+  "canvas": {"w": 1080, "h": 1350},
+  "bg": "#161616",
+  "accent": "#FF3214",
+  "text": "#FFFFFF",
+  "muted": "#D6D6D6",
+  "font": "Inter",
+  "bar_h": 14,
+  "margin_x": 130,
+  "handle": "@hoovbr",
+  "logo": "assets/hoov-logo-footer.png",
+  "_fonte": "Extraído dos posts publicados (posts/2026-10-27) e do prompt da rotina 'Hoov post do dia'."
+}
