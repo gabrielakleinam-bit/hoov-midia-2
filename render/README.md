@@ -31,3 +31,8 @@ python3 ../render/render_reel.py spec.json reel.mp4                    # cenas, 
 Testado: cenas de texto e final com SSIM 0,95 a 0,96 contra Reels publicados; áudio -14 LUFS;
 exportação 1080x1920, 30 fps, H.264, AAC 48 kHz. Trilha por código (`musica_gerador.py`) custa zero crédito.
 Obs.: o ducking exige a voz preenchida até o fim do vídeo (`apad`), já tratado no script.
+
+## Atalhos que economizam chamadas (23/11/2026)
+
+- `bash render/preparar.sh` — instala/valida numpy, scipy, playwright+chromium, ffmpeg numa chamada; imprime 1 linha (`OK | whisper piper` ou `FALTA: ...`).
+- `python3 -I render/validar.py video.mp4 --tipo story|reel [--folha folha.png] [--narracao "texto"]` — ffprobe (1080x1920, h264, 30 fps), áudio presente, loudness, duração (story 6–15 s; reel 15–60 s), palavras da narração (story ≤ 20) e UMA folha de contato para abrir com Read. Saída: 1 linha JSON; exit 1 se algo falhar.
